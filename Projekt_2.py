@@ -17,6 +17,6 @@ p2f.rozdelovnik()
 print("Zadej čtyřmistné číslo:")
 p2f.rozdelovnik()
 
-nahodne_cislo = p2f.nahodne_cislo()
-cislo = input()
+nahodne_cislo = p2f.nahodne_cislo() # vysledek je list 4 čísel
+cislo = input() # vstup od uživatele
 
