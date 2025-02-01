@@ -19,19 +19,22 @@ def nahodne_cislo() -> list:
     return cislo
 
 def kontrola_vstupu(cislo: str) -> bool:
-    '''Kontroluje jestli uživatel zadal správně 4-mistné číslo'''
+    '''Kontroluje jestli vstupní číslo odpovídá pravidlům hry'''
 
-    if len(cislo) != 4 or not cislo.isgidit() or cislo[0] == "0":
+    if len(set(cislo)) != 4 or not cislo.isdigit() or cislo[0] == "0":
         return False
     return True
 
 def vstup() -> str:
     '''Vratí vstup od uživatele'''
 
-    cislo = input("Zadej čtyřmistné číslo bez 0 na začátku: ")
-    
+    cislo = input("Zadej číslo:\n")
+    rozdelovnik()
+
     while not kontrola_vstupu(cislo):
-      print("Tvůj vstup neodpovídá pravidlům, zkus to znovu: ")
+      print("Tvůj vstup neodpovídá pravidlům.",
+            "Zadej čtyřmistné číslo bez opakování číslic a nuly na začátku:",
+            sep="\n")
       cislo = input() # vstup od uživatele
     
     return cislo
@@ -42,7 +45,7 @@ def porovnej(cislo: list, nahodne_cislo: list) -> dict:
     bull = 0
     cow = 0
 
-    for  pozice in range(4):
+    for pozice in range(4):
         if cislo[pozice] == nahodne_cislo[pozice]:
             bull += 1
         elif cislo[pozice] in nahodne_cislo:
