@@ -1,13 +1,20 @@
 # v tomto souboru budou funkce pro hlavní projekt
 import random
 
-if __name__ == "__main__":
-    print("Zde jsou pouze funkce, pro spuštění projektu použij soubor Projekt_2.py")
-
 def rozdelovnik() -> None:
     '''Vytiskne rozdělovací čáru'''
 
     print("-" * 40)
+
+def pozdrav() -> None:
+    print("Ahoj! Vítej ve hře Bulls & Cows!")
+    rozdelovnik()
+    print("Vytvořil jsem náhodné čtyřmistné číslo. Tvým úkolem je ho uhodnout.",
+            "Pojďme hrát!",
+            sep="\n")
+    rozdelovnik()
+    print("Zadej číslo:")
+    rozdelovnik()
 
 def nahodne_cislo() -> list:
     '''Vytvoří náhodné čtyřmistné číslo'''
@@ -21,15 +28,14 @@ def nahodne_cislo() -> list:
 def kontrola_vstupu(cislo: str) -> bool:
     '''Kontroluje jestli vstupní číslo odpovídá pravidlům hry'''
 
-    if len(set(cislo)) != 4 or not cislo.isdigit() or cislo[0] == "0":
+    if len(cislo) != 4 or len(set(cislo)) != 4 or not cislo.isdigit() or cislo[0] == "0":
         return False
     return True
 
 def vstup() -> str:
     '''Vratí vstup od uživatele'''
 
-    cislo = input("Zadej číslo:\n")
-    rozdelovnik()
+    cislo = input()
 
     while not kontrola_vstupu(cislo):
       print("Tvůj vstup neodpovídá pravidlům.",
@@ -53,5 +59,8 @@ def porovnej(cislo: list, nahodne_cislo: list) -> dict:
             
     return {"bull": bull, "cow": cow}
 
-print(nahodne_cislo())
-print(type(nahodne_cislo()))
+
+if __name__ == "__main__":
+    print("Zde jsou pouze funkce, pro spuštění projektu použij soubor Projekt_2.py")
+    print(nahodne_cislo())
+    print(type(nahodne_cislo()))
