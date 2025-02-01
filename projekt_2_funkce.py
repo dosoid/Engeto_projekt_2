@@ -6,6 +6,7 @@ if __name__ == "__main__":
 
 def rozdelovnik() -> None:
     '''Vytiskne rozdělovací čáru'''
+
     print("-" * 40)
 
 def nahodne_cislo() -> list:
@@ -30,12 +31,12 @@ def vstup() -> str:
     cislo = input("Zadej čtyřmistné číslo bez 0 na začátku: ")
     
     while not kontrola_vstupu(cislo):
-      print("Tvůj vstup neodpovídá pravidlům, zadej znovu: ")
+      print("Tvůj vstup neodpovídá pravidlům, zkus to znovu: ")
       cislo = input() # vstup od uživatele
     
     return cislo
 
-def porovnej(cislo: list, nahodne_cislo: list) -> tuple:
+def porovnej(cislo: list, nahodne_cislo: list) -> dict:
     '''Porovnává čísla a vrací počet Bull a Cow'''
 
     bull = 0
@@ -47,7 +48,7 @@ def porovnej(cislo: list, nahodne_cislo: list) -> tuple:
         elif cislo[pozice] in nahodne_cislo:
             cow += 1
             
-    return bull, cow
+    return {"bull": bull, "cow": cow}
 
 print(nahodne_cislo())
 print(type(nahodne_cislo()))
