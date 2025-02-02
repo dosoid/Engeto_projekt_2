@@ -7,6 +7,8 @@ def rozdelovnik() -> None:
     print("-" * 40)
 
 def pozdrav() -> None:
+    '''Pozdraví uživatele a připraví na hru'''
+
     print("Ahoj! Vítej ve hře Bulls & Cows!")
     rozdelovnik()
     print("Vytvořil jsem náhodné čtyřmistné číslo. Tvým úkolem je ho uhodnout.",
@@ -17,9 +19,10 @@ def pozdrav() -> None:
     rozdelovnik()
 
 def nahodne_cislo() -> list:
-    '''Vytvoří náhodné čtyřmistné číslo'''
+    '''Vytvoří náhodné čtyřmistné číslo. Vystupem je list o 4 číslech'''
 
     cislo = random.sample(range(10), 4)
+
     while cislo[0] == 0:
         cislo = random.sample(range(10), 4)
 
@@ -30,10 +33,11 @@ def kontrola_vstupu(cislo: str) -> bool:
 
     if len(cislo) != 4 or len(set(cislo)) != 4 or not cislo.isdigit() or cislo[0] == "0":
         return False
-    return True
+    else:
+        return True
 
 def vstup() -> str:
-    '''Vratí vstup od uživatele'''
+    '''Vrátí vstup od uživatele'''
 
     cislo = input()
 
@@ -51,7 +55,7 @@ def porovnej(cislo: list, nahodne_cislo: list) -> dict:
     bull = 0
     cow = 0
 
-    for pozice in range(4):
+    for pozice in range(len(nahodne_cislo)):
         if cislo[pozice] == nahodne_cislo[pozice]:
             bull += 1
         elif cislo[pozice] in nahodne_cislo:
@@ -59,8 +63,14 @@ def porovnej(cislo: list, nahodne_cislo: list) -> dict:
             
     return {"bull": bull, "cow": cow}
 
+def mnozne_cislo(pocet: int, slovo: str) -> str:
+    '''Vrátí správný tvar slova dle jednotného nebo množného čísla'''
+
+    if pocet == 1:
+        return f"{pocet} {slovo}"
+    else:
+        return f"{pocet} {slovo}s"
 
 if __name__ == "__main__":
     print("Zde jsou pouze funkce, pro spuštění projektu použij soubor Projekt_2.py")
     print(nahodne_cislo())
-    print(type(nahodne_cislo()))
